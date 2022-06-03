@@ -1,14 +1,18 @@
 const { Child } = require('./child.js');
-const { EventNotifier } = require('./eventNotifier.js');
+const { EventEmitter } = require('events');
 
 const main = () => {
-  const eventNotifier = new EventNotifier();
+  const eventEmitter = new EventEmitter();
   const chintoo = new Child();
 
-  eventNotifier.register('stepForward', () => chintoo.stepForward());
-  eventNotifier.register('jump', () => chintoo.jump());
+  eventEmitter.on('stepForward', () => chintoo.stepForward());
+  eventEmitter.on('stepForward', () => chintoo.reduceEnergy(1));
 
-  eventNotifier.notify('stepForward');
-}
+  eventEmitter.on('jump', () => chintoo.jump());
+  eventEmitter.on('jump', () => chintoo.reduceEnergy(2));
+
+  eventEmitter.emit('jump');
+  eventEmitter.emit('stepForward');
+};
 
 main();
