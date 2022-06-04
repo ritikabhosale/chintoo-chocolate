@@ -27,24 +27,12 @@ class Child {
     this.#position = this.#position.translate(0, -1);
   }
 
-  jump() {
-    this.#position = this.#position.translate(3, 0);
-  }
-
   reduceEnergy(consumedEnergy) {
     this.#energy = this.#energy - consumedEnergy;
   }
 
   areYouAt(position) {
     return this.#position.equals(position);
-  }
-
-  getPosition() {
-    return this.#position;
-  }
-
-  getEnergy() {
-    return this.#energy;
   }
 
   getSymbol() {

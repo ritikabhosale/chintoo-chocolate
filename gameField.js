@@ -30,9 +30,9 @@ class GameField {
     }
   }
 
-  #blockIndex(object) {
+  #blockIndex(entity) {
     const block = this.#blocks.find(({ coordinate }) =>
-      object.areYouAt(coordinate));
+      entity.areYouAt(coordinate));
     return block.blockIndex;
   }
 
