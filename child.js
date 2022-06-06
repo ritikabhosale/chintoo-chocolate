@@ -38,6 +38,10 @@ class Child {
   getSymbol() {
     return this.#symbol;
   }
+
+  write(screen) {
+    screen.writeAt(this.#position.x, this.#position.y, this.#symbol);
+  }
 }
 
 exports.Child = Child;

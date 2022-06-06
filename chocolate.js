@@ -13,6 +13,14 @@ class Chocolate {
   getSymbol() {
     return this.#symbol;
   }
+
+  getPosition() {
+    return this.#position;
+  }
+
+  write(screen) {
+    screen.writeAt(this.#position.x, this.#position.y, this.#symbol);
+  }
 }
 
 exports.Chocolate = Chocolate;
