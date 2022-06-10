@@ -35,12 +35,8 @@ class Character {
     return this.#position.equals(position);
   }
 
-  getSymbol() {
-    return this.#symbol;
-  }
-
   write(screen) {
-    screen.writeAt(this.#position.x, this.#position.y, this.#symbol);
+    screen.writeAt(this.#position, this.#symbol);
   }
 }
 

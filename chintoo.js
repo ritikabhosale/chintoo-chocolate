@@ -1,8 +1,8 @@
 const { Character } = require('./character.js');
-const { Food } = require('./food.js');
-const { Point } = require('./point.js');
 const { createScreen } = require('./screen.js');
 const { Game } = require('./game.js');
+const { Food } = require('./food.js');
+const { Point } = require('./point.js');
 
 const main = () => {
   const chintoo = new Character('👶');

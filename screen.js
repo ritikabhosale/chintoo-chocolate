@@ -8,7 +8,7 @@ class Screen {
     this.#blocks = blocks;
   }
 
-  writeAt(x, y, char) {
+  writeAt({ x, y }, char) {
     this.#blocks[y][x] = char;
   }
 
