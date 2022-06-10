@@ -1,6 +1,6 @@
 const { Point } = require('./point.js');
 
-class Child {
+class Character {
   #position;
   #energy;
   #symbol;
@@ -31,7 +31,7 @@ class Child {
     this.#energy = this.#energy - consumedEnergy;
   }
 
-  areYouAt(position) {
+  isAt(position) {
     return this.#position.equals(position);
   }
 
@@ -44,4 +44,4 @@ class Child {
   }
 }
 
-exports.Child = Child;
+module.exports = { Character };

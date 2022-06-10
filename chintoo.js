@@ -1,41 +1,22 @@
-const { Child } = require('./child.js');
-const { EventEmitter } = require('events');
-const { Chocolate } = require('./chocolate.js');
+const { Character } = require('./character.js');
+const { Food } = require('./food.js');
 const { Point } = require('./point.js');
 const { createScreen } = require('./screen.js');
-
-const registerEvents = (chintoo, screen, chocolate) => {
-  const eventEmitter = new EventEmitter();
-  eventEmitter.on('forward', () => chintoo.stepForward());
-  eventEmitter.on('backward', () => chintoo.stepBackward());
-  eventEmitter.on('left', () => chintoo.stepLeft());
-  eventEmitter.on('right', () => chintoo.stepRight());
-
-  eventEmitter.on('display', () => {
-    chocolate.write(screen);
-    chintoo.write(screen);
-    console.log(screen.toString());
-  });
-  return eventEmitter;
-};
+const { Game } = require('./game.js');
 
 const main = () => {
-  const chintoo = new Child('👶');
-  const chocolate = new Chocolate(new Point(2, 2), '🍭');
+  const chintoo = new Character('👶');
+  const chocolate = new Food(new Point(2, 2), '🍭');
   const screen = createScreen(3, 3);
-
-  const eventEmitter = registerEvents(chintoo, screen, chocolate);
+  const game = new Game(chintoo, chocolate, screen);
+  console.log(game.display());
   process.stdin.setEncoding('utf8');
 
-  console.log('Help chintoo get chocolate');
-  eventEmitter.emit('display');
-
   process.stdin.on('data', (instruction) => {
-    eventEmitter.emit(instruction.slice(0, -1));
-    screen.reset();
-    eventEmitter.emit('display');
+    game.update(instruction.trim());
+    console.log(game.display());
 
-    if (chintoo.areYouAt(chocolate.getPosition())) {
+    if (game.isOver()) {
       console.log('Yayyy!!! Yummyyy...');
       process.exit();
     }

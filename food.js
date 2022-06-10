@@ -1,4 +1,4 @@
-class Chocolate {
+class Food {
   #position;
   #symbol;
   constructor(position, symbol) {
@@ -6,7 +6,7 @@ class Chocolate {
     this.#symbol = symbol;
   }
 
-  areYouAt(position) {
+  isAt(position) {
     return this.#position.equals(position);
   }
 
@@ -23,4 +23,4 @@ class Chocolate {
   }
 }
 
-exports.Chocolate = Chocolate;
+module.exports = { Food };
