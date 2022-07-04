@@ -1,41 +1,33 @@
 class Field {
   #position;
   #dimensions;
-  #boy;
-  #chocolate;
-  constructor(position, dimensions, boy, chocolate) {
+  constructor(position, dimensions) {
     this.#position = position;
     this.#dimensions = dimensions;
-    this.#boy = boy;
-    this.#chocolate = chocolate;
   }
 
-  #isTopEdge() {
-    const { position: { top } } = this.#boy.getInfo();
+  #isTopEdge({ top }) {
     return top <= this.#position.top;
   }
 
-  #isBottomEdge() {
-    const { position: { top } } = this.#boy.getInfo();
+  #isBottomEdge({ top }) {
     return top + 30 >= this.#position.top + this.#dimensions.height;
   }
 
-  #isLeftEdge() {
-    const { position: { left } } = this.#boy.getInfo();
+  #isLeftEdge({ left }) {
     return left <= this.#position.left;
   }
 
-  #isRightEdge() {
-    const { position: { left } } = this.#boy.getInfo();
+  #isRightEdge({ left }) {
     return left >= this.#position.left + this.#dimensions.width;
   }
 
-  isValidMove(direction) {
+  isValidMove(position, direction) {
     switch (direction) {
-      case 'ArrowUp': return !this.#isTopEdge();
-      case 'ArrowDown': return !this.#isBottomEdge();
-      case 'ArrowRight': return !this.#isRightEdge();
-      case 'ArrowLeft': return !this.#isLeftEdge();
+      case 'ArrowUp': return !this.#isTopEdge(position);
+      case 'ArrowDown': return !this.#isBottomEdge(position);
+      case 'ArrowRight': return !this.#isRightEdge(position);
+      case 'ArrowLeft': return !this.#isLeftEdge(position);
     }
   }
 

@@ -40,7 +40,7 @@ const updateGame = (game, event, chintoo) => {
 const main = () => {
   const chintoo = new Character({ top: 470, left: 0 }, 'boy');
   const chocolate = new Food({ top: 0, left: 470 }, 'chocolate');
-  const field = new Field({ top: 0, left: 0 }, { height: 500, width: 500 }, chintoo, chocolate);
+  const field = new Field({ top: 0, left: 0 }, { height: 500, width: 500 });
   const game = new Game(field, chintoo, chocolate);
   drawOnScreen(field, chintoo, chocolate);
   addEventListener('keydown', onKeyDown = (event) => { updateGame(game, event, chintoo) });
