@@ -1,8 +1,10 @@
 const updateElement = (object) => {
-  const { position: { top, left }, id } = object.getInfo();
+  const { position: { top, left }, id, size: { height, width } } = object.getInfo();
   const element = document.getElementById(id);
   element.style.top = top;
   element.style.left = left;
+  element.style.height = height;
+  element.style.width = width;
 };
 
 const drawField = (field) => {
@@ -38,8 +40,8 @@ const updateGame = (game, event, chintoo) => {
 };
 
 const main = () => {
-  const chintoo = new Character({ top: 470, left: 0 }, 'boy');
-  const chocolate = new Food({ top: 0, left: 470 }, 'chocolate');
+  const chintoo = new Character({ top: 470, left: 0 }, { height: 30, width: 30 }, 'boy');
+  const chocolate = new Food({ top: 0, left: 470 }, { height: 30, width: 30 }, 'chocolate');
   const field = new Field({ top: 0, left: 0 }, { height: 500, width: 500 });
   const game = new Game(field, chintoo, chocolate);
   drawOnScreen(field, chintoo, chocolate);

@@ -1,10 +1,11 @@
 class Character {
   #position;
-  #energy;
+  #size;
   #id;
 
-  constructor(position, id) {
+  constructor(position, size, id) {
     this.#position = position;
+    this.#size = size;
     this.#id = id;
   }
 
@@ -24,12 +25,9 @@ class Character {
     this.#position.top += 10;
   }
 
-  reduceEnergy(consumedEnergy) {
-    this.#energy = this.#energy - consumedEnergy;
-  }
-
   getInfo() {
     const { top, left } = this.#position;
-    return { position: { top, left }, id: this.#id };
+    const { height, width } = this.#size;
+    return { position: { top, left }, size: { height, width }, id: this.#id };
   }
 }

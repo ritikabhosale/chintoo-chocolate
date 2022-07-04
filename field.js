@@ -6,28 +6,28 @@ class Field {
     this.#dimensions = dimensions;
   }
 
-  #isTopEdge({ top }) {
+  #isTopEdge({ top }, { height }) {
     return top <= this.#position.top;
   }
 
-  #isBottomEdge({ top }) {
-    return top + 30 >= this.#position.top + this.#dimensions.height;
+  #isBottomEdge({ top }, { height }) {
+    return top + height >= this.#position.top + this.#dimensions.height;
   }
 
-  #isLeftEdge({ left }) {
+  #isLeftEdge({ left }, { width }) {
     return left <= this.#position.left;
   }
 
-  #isRightEdge({ left }) {
-    return left >= this.#position.left + this.#dimensions.width;
+  #isRightEdge({ left }, { width }) {
+    return left + width >= this.#position.left + this.#dimensions.width;
   }
 
-  isValidMove(position, direction) {
+  isValidMove(direction, position, sizeOfElement) {
     switch (direction) {
-      case 'ArrowUp': return !this.#isTopEdge(position);
-      case 'ArrowDown': return !this.#isBottomEdge(position);
-      case 'ArrowRight': return !this.#isRightEdge(position);
-      case 'ArrowLeft': return !this.#isLeftEdge(position);
+      case 'ArrowUp': return !this.#isTopEdge(position, sizeOfElement);
+      case 'ArrowDown': return !this.#isBottomEdge(position, sizeOfElement);
+      case 'ArrowRight': return !this.#isRightEdge(position, sizeOfElement);
+      case 'ArrowLeft': return !this.#isLeftEdge(position, sizeOfElement);
     }
   }
 

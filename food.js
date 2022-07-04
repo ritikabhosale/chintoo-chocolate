@@ -1,13 +1,16 @@
 class Food {
   #position;
   #id;
-  constructor(position, id) {
+  #size;
+  constructor(position, size, id) {
     this.#position = position;
+    this.#size = size;
     this.#id = id;
   }
 
   getInfo() {
     const { top, left } = this.#position;
-    return { position: { top, left }, id: this.#id };
+    const { height, width } = this.#size;
+    return { position: { top, left }, size: { height, width }, id: this.#id };
   }
 }
