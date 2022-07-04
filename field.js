@@ -30,26 +30,15 @@ class Field {
     return left >= this.#position.left + this.#dimensions.width;
   }
 
-  updatePosition(direction) {
+  isValidMove(direction) {
     switch (direction) {
-      case 'ArrowUp': if (!this.#isTopEdge()) {
-        this.#boy.stepForward();
-      };
-        break;
-      case 'ArrowDown': if (!this.#isBottomEdge()) {
-        this.#boy.stepBackward();
-      };
-        break;
-      case 'ArrowRight': if (!this.#isRightEdge()) {
-        this.#boy.stepRight();
-      };
-        break;
-      case 'ArrowLeft': if (!this.#isLeftEdge()) {
-        this.#boy.stepLeft();
-      };
-        break;
+      case 'ArrowUp': return !this.#isTopEdge();
+      case 'ArrowDown': return !this.#isBottomEdge();
+      case 'ArrowRight': return !this.#isRightEdge();
+      case 'ArrowLeft': return !this.#isLeftEdge();
     }
   }
+
   getInfo() {
     const { top, left } = this.#position;
     const { height, width } = this.#dimensions;
