@@ -1,19 +1,23 @@
 const updateElement = (object) => {
-  const { position: { top, left }, id, size: { height, width } } = object.getInfo();
+  const { position: { top, left }, id, height } = object.getInfo();
   const element = document.getElementById(id);
   element.style.top = top;
   element.style.left = left;
   element.style.height = height;
-  element.style.width = width;
+  element.style.fontSize = height;
+};
+
+const updateMessage = (message) => {
+  const messageElement = document.getElementById('message');
+  messageElement.innerText = message;
 };
 
 const drawField = (field) => {
   const fieldElement = document.getElementById('field');
-  const { position: { top, left }, dimensions: { height, width } } = field.getInfo();
+  const { position: { top, left }, height } = field.getInfo();
   fieldElement.style.top = top;
   fieldElement.style.left = left;
   fieldElement.style.height = height;
-  fieldElement.style.width = width;
   return fieldElement;
 };
 
@@ -25,8 +29,9 @@ const drawElement = (fieldElement, object) => {
   updateElement(object);
 };
 
-const drawOnScreen = (field, chintoo, chocolate) => {
+const drawOnScreen = (game, field, chintoo, chocolate) => {
   const fieldElement = drawField(field);
+  updateMessage(game.getMessage());
   drawElement(fieldElement, chintoo);
   drawElement(fieldElement, chocolate);
 };
@@ -37,14 +42,18 @@ const updateGame = (game, event, chintoo) => {
   if (game.isOver()) {
     removeEventListener('keydown', onKeyDown);
   }
+  updateMessage(game.getMessage());
+  if (game.getMessage() === 'Game Over') {
+    removeEventListener('keydown', onKeyDown);
+  }
 };
 
 const main = () => {
-  const chintoo = new Character({ top: 470, left: 0 }, { height: 30, width: 30 }, 'boy');
-  const chocolate = new Food({ top: 0, left: 470 }, { height: 30, width: 30 }, 'chocolate');
-  const field = new Field({ top: 0, left: 0 }, { height: 500, width: 500 });
+  const chintoo = new Character({ top: 270, left: 0 }, 30, 'boy');
+  const chocolate = new Food({ top: 0, left: 270 }, 30, 'chocolate');
+  const field = new Field({ top: 0, left: 0 }, 300);
   const game = new Game(field, chintoo, chocolate);
-  drawOnScreen(field, chintoo, chocolate);
+  drawOnScreen(game, field, chintoo, chocolate);
   addEventListener('keydown', onKeyDown = (event) => { updateGame(game, event, chintoo) });
 };
 

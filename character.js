@@ -1,33 +1,32 @@
 class Character {
   #position;
-  #size;
   #id;
+  #height;
 
-  constructor(position, size, id) {
+  constructor(position, height, id) {
     this.#position = position;
-    this.#size = size;
+    this.#height = height;
     this.#id = id;
   }
 
-  stepRight() {
-    this.#position.left += 10;
+  stepRight(noOfsteps) {
+    this.#position.left += noOfsteps;
   }
 
-  stepLeft() {
-    this.#position.left -= 10;
+  stepLeft(noOfsteps) {
+    this.#position.left -= noOfsteps;
   }
 
-  stepForward() {
-    this.#position.top -= 10;
+  stepForward(noOfsteps) {
+    this.#position.top -= noOfsteps;
   }
 
-  stepBackward() {
-    this.#position.top += 10;
+  stepBackward(noOfsteps) {
+    this.#position.top += noOfsteps;
   }
 
   getInfo() {
     const { top, left } = this.#position;
-    const { height, width } = this.#size;
-    return { position: { top, left }, size: { height, width }, id: this.#id };
+    return { position: { top, left }, height: this.#height, id: this.#id };
   }
 }
