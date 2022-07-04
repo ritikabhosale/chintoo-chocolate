@@ -1,18 +1,13 @@
 class Food {
   #position;
-  #symbol;
-  constructor(position, symbol) {
+  #id;
+  constructor(position, id) {
     this.#position = position;
-    this.#symbol = symbol;
+    this.#id = id;
   }
 
-  getPosition() {
-    return this.#position;
-  }
-
-  write(screen) {
-    screen.writeAt(this.#position, this.#symbol);
+  getInfo() {
+    const { top, left } = this.#position;
+    return { position: { top, left }, id: this.#id };
   }
 }
-
-module.exports = { Food };

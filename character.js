@@ -1,43 +1,35 @@
-const { Point } = require('./point.js');
-
 class Character {
   #position;
   #energy;
-  #symbol;
+  #id;
 
-  constructor(symbol) {
-    this.#position = new Point(0, 0);
-    this.#energy = 100;
-    this.#symbol = symbol;
+  constructor(position, id) {
+    this.#position = position;
+    this.#id = id;
   }
 
   stepRight() {
-    this.#position = this.#position.translate(1, 0);
+    this.#position.left += 10;
   }
 
   stepLeft() {
-    this.#position = this.#position.translate(-1, 0);
+    this.#position.left -= 10;
   }
 
   stepForward() {
-    this.#position = this.#position.translate(0, 1);
+    this.#position.top -= 10;
   }
 
   stepBackward() {
-    this.#position = this.#position.translate(0, -1);
+    this.#position.top += 10;
   }
 
   reduceEnergy(consumedEnergy) {
     this.#energy = this.#energy - consumedEnergy;
   }
 
-  isAt(position) {
-    return this.#position.equals(position);
-  }
-
-  write(screen) {
-    screen.writeAt(this.#position, this.#symbol);
+  getInfo() {
+    const { top, left } = this.#position;
+    return { position: { top, left }, id: this.#id };
   }
 }
-
-module.exports = { Character };
