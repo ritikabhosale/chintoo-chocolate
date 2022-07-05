@@ -20,7 +20,10 @@ class Game {
   }
 
   #calculateMoves = () => {
-    return 20;
+    const { position: { top: charTop, left: charLeft } } = this.#character.getInfo();
+    const { position: { top: foodTop, left: foodLeft } } = this.#food.getInfo();
+    const noOfMoves = Math.abs(foodTop - charTop) / this.#displacement
+    return noOfMoves + Math.abs(foodLeft - charLeft) / this.#displacement
   }
 
   update(direction) {

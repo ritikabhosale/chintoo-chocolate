@@ -36,22 +36,29 @@ const drawOnScreen = (game, field, chintoo, chocolate) => {
   drawElement(fieldElement, chocolate);
 };
 
-const updateGame = (game, event, chintoo) => {
+const removeElement = object => {
+  const { id } = object.getInfo();
+  const element = document.getElementById(id);
+  element.remove();
+};
+
+const updateGame = (game, event, chintoo, chocolate) => {
   game.update(event.key);
   updateElement(chintoo);
   if (game.isOver()) {
+    removeElement(chocolate);
     removeEventListener('keydown', onKeyDown);
   }
   updateMessage(game.getMessage());
 };
 
 const main = () => {
-  const chintoo = new Character({ top: 270, left: 0 }, 30, 'boy');
-  const chocolate = new Food({ top: 0, left: 270 }, 30, 'chocolate');
-  const field = new Field({ top: 0, left: 0 }, 300);
+  const chintoo = new Character({ top: 470, left: 47 }, 30, 'boy');
+  const chocolate = new Food({ top: 0, left: 470 }, 30, 'chocolate');
+  const field = new Field({ top: 0, left: 0 }, 500);
   const game = new Game(field, chintoo, chocolate);
   drawOnScreen(game, field, chintoo, chocolate);
-  addEventListener('keydown', onKeyDown = (event) => { updateGame(game, event, chintoo) });
+  addEventListener('keydown', onKeyDown = (event) => { updateGame(game, event, chintoo, chocolate) });
 };
 
 window.onload = main;
