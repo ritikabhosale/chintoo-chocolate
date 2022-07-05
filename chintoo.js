@@ -43,9 +43,6 @@ const updateGame = (game, event, chintoo) => {
     removeEventListener('keydown', onKeyDown);
   }
   updateMessage(game.getMessage());
-  if (game.getMessage() === 'Game Over') {
-    removeEventListener('keydown', onKeyDown);
-  }
 };
 
 const main = () => {
