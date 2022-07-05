@@ -53,12 +53,14 @@ const updateGame = (game, event, chintoo, chocolate) => {
 };
 
 const main = () => {
-  const chintoo = new Character({ top: 470, left: 47 }, 30, 'boy');
-  const chocolate = new Food({ top: 0, left: 470 }, 30, 'chocolate');
-  const field = new Field({ top: 0, left: 0 }, 500);
+  const chintoo = new Character({ top: 670, left: 0 }, 30, 'boy');
+  const chocolate = new Food({ top: 0, left: 670 }, 30, 'chocolate');
+  const field = new Field({ top: 0, left: 0 }, 700);
   const game = new Game(field, chintoo, chocolate);
   drawOnScreen(game, field, chintoo, chocolate);
-  addEventListener('keydown', onKeyDown = (event) => { updateGame(game, event, chintoo, chocolate) });
+  addEventListener('keydown', onKeyDown = (event) => {
+    updateGame(game, event, chintoo, chocolate)
+  });
 };
 
 window.onload = main;
